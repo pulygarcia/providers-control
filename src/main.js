@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 
 //FB
 import { VueFire, VueFireAuth } from 'vuefire'
-import {firebaseApp} from './config/firebaseConfig.js'
+import {firebaseApp} from './config/firebase.js'
 
 //FK
 import config from '../formkit.config.js'
