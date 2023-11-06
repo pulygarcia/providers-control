@@ -7,12 +7,7 @@
 <template>
   <header class="bg-gray-900 text-white py-6">
     <div class="container mx-auto flex justify-between items-center">
-      <h2 class="font-bold text-lg">Providers control</h2>
-
-      <div class="flex items-center gap-2">
-        <label for="filter">Filter :</label>
-        <input type="text" placeholder="Provider name" class="text-gray-600 p-1 rounded outline-none">
-      </div>
+      <h2 class="font-bold text-lg">Admin panel</h2>
 
       <nav class="flex items-center gap-8">
         <RouterLink :to="{name: 'home'}" class="flex items-center gap-2 rounded py-1 px-2 hover:shadow-lg transition bg-blue-950">
@@ -48,7 +43,7 @@
           List
         </RouterLink>
 
-        <button class="flex items-center gap-2 rounded py-1 px-2 hover:shadow-lg transition bg-blue-950">
+        <button class="flex items-center gap-2 rounded py-1 px-2 hover:shadow-lg transition bg-red-500 text-white">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
           </svg>

@@ -1,9 +1,11 @@
 <script setup>
   import { reactive, ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import {useProvidersStore} from '../../stores/providersStore';
   import {Dialog, DialogPanel, DialogTitle, DialogDescription,} from '@headlessui/vue'
 
   const providersStore = useProvidersStore();
+  const router = useRouter();
 
   const sended = ref(false);
   const setIsOpen = (value) => {
@@ -21,11 +23,12 @@
   const handleSubmit = async (data) => {
     try {
       await providersStore.addNewProvider({...data, active: true});
-      setIsOpen(true)
-
+      setIsOpen(true);
+      
       setTimeout(() => {
         setIsOpen(false)
-      }, 5000);
+        router.push({name: 'admin-providers'});
+      }, 3000);
 
     } catch (error) {
       console.log(error); 
@@ -38,7 +41,7 @@
   <p class="text-gray-600 text-center">Here you will can register new providers</p>
 
   <Dialog :open="sended" class="relative z-50">
-    <div class="fixed top-0 flex w-screen items-center justify-end p-4">
+    <div class="fixed top-0 flex w-screen items-center justify-end p-2">
       <DialogPanel class="w-full max-w-sm rounded-lg bg-green-100 p-10">
         <DialogTitle class="text-green-600 font-bold text-2xl">Provider added</DialogTitle>
         <DialogDescription class="text-gray-600">
