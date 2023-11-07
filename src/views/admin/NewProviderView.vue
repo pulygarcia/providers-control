@@ -42,7 +42,7 @@
 
   <Dialog :open="sended" class="relative z-50">
     <div class="fixed top-0 flex w-screen items-center justify-end p-2">
-      <DialogPanel class="w-full max-w-sm rounded-lg bg-green-100 p-10">
+      <DialogPanel class="w-full max-w-sm rounded-lg bg-green-100 p-5">
         <DialogTitle class="text-green-600 font-bold text-2xl">Provider added</DialogTitle>
         <DialogDescription class="text-gray-600">
           The provider was added correctly

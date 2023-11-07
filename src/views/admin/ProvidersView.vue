@@ -3,11 +3,10 @@
   import {useProvidersStore} from '../../stores/providersStore'
 
   const providersStore = useProvidersStore();
-
 </script>
 
 <template>
-  <h1 class="my-10 text-4xl font-bold text-blue-900">current providers</h1>
+  <h1 class="my-10 text-4xl font-bold text-blue-900">Current providers</h1>
 
   <p v-if="providersStore.noResults" class="text-red-600 mt-10 font-bold">There aren't results</p>
 

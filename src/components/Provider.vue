@@ -1,4 +1,8 @@
 <script setup>
+    import {useRoute} from 'vue-router'
+    
+    const route = useRoute();
+
     defineProps({
         provider:{
             type: Object
@@ -35,7 +39,7 @@
         </span>
         </td>
 
-        <td class="px-6 py-4">
+        <td v-if="route.path === '/admin/providers'" class="px-6 py-4">
             <div class="flex gap-3">
             <button class="text-blue-500">Edit</button>
             <button class="text-red-500">Delete</button>
