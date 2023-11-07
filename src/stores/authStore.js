@@ -34,8 +34,13 @@ export const useAuthStore = defineStore('auth', () => {
             // Signed in 
             currentUser.value = userCredential.user;
             //console.log(currentUser.value);
-            router.push({name: 'admin-providers'})
-          })
+            successMessage.value = 'Session started successfully'
+            setTimeout(() => {
+                successMessage.value = '';
+                router.push({name: 'admin-providers'})
+            }, 3000);
+
+        })
           .catch((error) => {
             currentError.value = errors[error.code];
         });
@@ -61,6 +66,7 @@ export const useAuthStore = defineStore('auth', () => {
         currentUser,
         currentError,
         userName,
-        logout
+        logout,
+        successMessage
     }
 })

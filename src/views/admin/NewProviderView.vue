@@ -7,11 +7,6 @@
   const providersStore = useProvidersStore();
   const router = useRouter();
 
-  const sended = ref(false);
-  const setIsOpen = (value) => {
-    sended.value = value
-  }
-
   const formData = reactive({
     name: '',
     business: '',
@@ -23,10 +18,8 @@
   const handleSubmit = async (data) => {
     try {
       await providersStore.addNewProvider({...data, active: true});
-      setIsOpen(true);
       
       setTimeout(() => {
-        setIsOpen(false)
         router.push({name: 'admin-providers'});
       }, 3000);
 
@@ -40,14 +33,14 @@
   <h2 class="text-center text-2xl font-bold">New provider</h2>
   <p class="text-gray-600 text-center">Here you will can register new providers</p>
 
-  <Dialog :open="sended" class="relative z-50">
+  <Dialog :open="providersStore.successMessage ? true : false" class="relative z-50">
     <div class="fixed top-0 flex w-screen items-center justify-end p-2">
       <DialogPanel class="w-full max-w-sm rounded-lg bg-green-100 p-5">
-        <DialogTitle class="text-green-600 font-bold text-2xl">Provider added</DialogTitle>
+        <DialogTitle class="text-green-600 font-bold text-2xl">Success</DialogTitle>
         <DialogDescription class="text-gray-600">
-          The provider was added correctly
+          {{providersStore.successMessage}}
         </DialogDescription>
-        <button @click="setIsOpen(false)" class="mt-4 py-1 px-8 bg-white rounded-lg text-green-600 hover:bg-gray-50 outline-none">Agree</button>
+        <button @click="providersStore.successMessage = ''" class="mt-4 py-1 px-8 bg-white rounded-lg text-green-600 hover:bg-gray-50 outline-none">Agree</button>
       </DialogPanel>
     </div>
   </Dialog>

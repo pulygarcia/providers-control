@@ -24,6 +24,7 @@
     <MainHeader />
 
     <main class="container mx-auto mt-8">
+        <!-- DIALOG ERROR -->
         <Dialog :open="authStore.currentError ? true : false" class="relative z-50">
             <div class="fixed top-0 flex w-screen items-center justify-end p-2">
             <DialogPanel class="w-full max-w-sm rounded-lg bg-red-200 p-5">
@@ -32,6 +33,19 @@
                 {{ authStore.currentError }}
                 </DialogDescription>
                 <button @click="authStore.currentError = ''" class="mt-4 py-1 px-8 bg-white rounded-lg text-red-600 hover:bg-gray-50 outline-none">Agree</button>
+            </DialogPanel>
+            </div>
+        </Dialog>
+
+         <!-- DIALOG SUCCESS -->
+         <Dialog :open="authStore.successMessage ? true : false" class="relative z-50">
+            <div class="fixed top-0 flex w-screen items-center justify-end p-2">
+            <DialogPanel class="w-full max-w-sm rounded-lg bg-green-200 p-5">
+                <DialogTitle class="text-green-600 font-bold text-2xl">Success</DialogTitle>
+                <DialogDescription class="text-gray-600">
+                {{ authStore.successMessage }}
+                </DialogDescription>
+                <button @click="authStore.successMessage = ''" class="mt-4 py-1 px-8 bg-white rounded-lg text-green-600 hover:bg-gray-50 outline-none">Agree</button>
             </DialogPanel>
             </div>
         </Dialog>
