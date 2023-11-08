@@ -29,7 +29,7 @@ export const useProvidersStore = defineStore('providers', () => {
     }
 
     const noResults = computed(() => {
-        return allProviders.length;
+        return allProviders.value.length
     })
 
     return{
