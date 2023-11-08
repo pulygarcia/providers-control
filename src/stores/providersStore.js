@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import {defineStore} from 'pinia'
 import {useFirestore, useCollection} from 'vuefire'
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
 
 export const useProvidersStore = defineStore('providers', () => {
     const db = useFirestore();
@@ -22,6 +22,12 @@ export const useProvidersStore = defineStore('providers', () => {
 
     const allProviders = useCollection(collection(db, 'providers'));
 
+    const deleteProvider = async (providerId) => {
+        if(confirm('Provider will be deleted from Database')){
+            await deleteDoc(doc(db, 'providers', providerId));
+        }
+    }
+
     const noResults = computed(() => {
         return allProviders.length;
     })
@@ -30,6 +36,7 @@ export const useProvidersStore = defineStore('providers', () => {
         addNewProvider,
         allProviders,
         noResults,
-        successMessage
+        successMessage,
+        deleteProvider
     }
 })

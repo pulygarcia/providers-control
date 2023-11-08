@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
             successMessage.value = 'Session started successfully'
             setTimeout(() => {
                 successMessage.value = '';
-                router.push({name: 'admin-providers'})
+                router.push({name: 'new-provider'})
             }, 3000);
 
         })

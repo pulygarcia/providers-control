@@ -1,7 +1,9 @@
 <script setup>
     import {useRoute} from 'vue-router'
+    import {useProvidersStore} from '../stores/providersStore'
     
     const route = useRoute();
+    const providersStore = useProvidersStore();
 
     defineProps({
         provider:{
@@ -42,7 +44,7 @@
         <td v-if="route.path === '/admin/providers'" class="px-6 py-4">
             <div class="flex gap-3">
             <button class="text-blue-500">Edit</button>
-            <button class="text-red-500">Delete</button>
+            <button @click="providersStore.deleteProvider(provider.id)" class="text-red-500">Delete</button>
             </div>
         </td>
     </tr>
