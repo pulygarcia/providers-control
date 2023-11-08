@@ -29,6 +29,11 @@ const router = createRouter({
           path: '/new',
           name: 'new-provider',
           component: () => import('../views/admin/NewProviderView.vue')
+        },
+        {
+          path: '/update/:id',
+          name: 'update-provider',
+          component: () => import('../views/admin/UpdateProviderView.vue')
         }
       ]
     }
