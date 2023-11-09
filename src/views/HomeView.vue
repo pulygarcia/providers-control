@@ -32,6 +32,9 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Adress
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Status
                     </th>
                     <th v-if="route.fullPath === '/admin/providers'" scope="col" class="px-6 py-3">

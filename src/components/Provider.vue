@@ -34,6 +34,10 @@
         </td>
 
         <td class="px-6 py-4">
+            {{provider.adress}}
+        </td>
+
+        <td class="px-6 py-4">
             <span
             class="py-1 px-3 rounded-2xl"
             :class="provider.active ? 'bg-green-200 text-green-700' : 'bg-red-300 text-red-600'"

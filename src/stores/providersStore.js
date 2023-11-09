@@ -22,6 +22,20 @@ export const useProvidersStore = defineStore('providers', () => {
 
     const allProviders = useCollection(collection(db, 'providers'));
 
+    const modifyProvider = async (providerRef, data) => {
+        try {
+            await updateDoc(providerRef, data);
+
+            successMessage.value = 'Provider was updated correctly';
+            setTimeout(() => {
+                successMessage.value = '';
+            }, 3000);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const deleteProvider = async (providerId) => {
         if(confirm('Provider will be deleted from Database')){
             await deleteDoc(doc(db, 'providers', providerId));
@@ -33,10 +47,12 @@ export const useProvidersStore = defineStore('providers', () => {
     })
 
     return{
+        db,
         addNewProvider,
         allProviders,
         noResults,
         successMessage,
+        modifyProvider,
         deleteProvider
     }
 })

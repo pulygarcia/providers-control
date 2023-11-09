@@ -1,32 +1,51 @@
 <script setup>
-  import { reactive, ref } from 'vue';
-  import { useRouter } from 'vue-router';
-  import {useProvidersStore} from '../../stores/providersStore';
-  import {Dialog, DialogPanel, DialogTitle, DialogDescription,} from '@headlessui/vue'
+    import { reactive, watch } from 'vue';
+    import { useRouter, useRoute } from 'vue-router';
+    import {useDocument} from 'vuefire';
+    import { doc } from "firebase/firestore";
+    import {useProvidersStore} from '../../stores/providersStore';
+    import {Dialog, DialogPanel, DialogTitle, DialogDescription,} from '@headlessui/vue'
 
-  const providersStore = useProvidersStore();
-  const router = useRouter();
+    const providersStore = useProvidersStore();
+    const router = useRouter();
+    const route = useRoute();
 
-  const formData = reactive({
-    name: '',
-    business: '',
-    phone: '',
-    email: '',
-    adress: ''
-  })
+    const formData = reactive({
+        name: '',
+        business: '',
+        phone: '',
+        email: '',
+        adress: ''
+    })
 
-  /*const handleSubmit = async (data) => {
-    try {
-      await providersStore.addNewProvider({...data, active: true});
-      
-      setTimeout(() => {
-        router.push({name: 'admin-providers'});
-      }, 3000);
+    const db = providersStore.db;
+    const providerRef = doc(db, 'providers', route.params.id);
+    const selectedProvider = useDocument(providerRef);
 
-    } catch (error) {
-      console.log(error); 
-    }
-  }*/
+    watch(selectedProvider, (selectedProvider) => {
+        //If there isnt product, return user to products view
+        if(!selectedProvider){
+            router.push({name: 'admin-providers'});
+
+            return;
+        }
+        
+        //Fill the form
+        Object.assign(formData, selectedProvider);
+    })
+
+    const handleSubmit = async (data) => {
+        try {
+        await providersStore.modifyProvider(providerRef, data);
+        
+        setTimeout(() => {
+            router.push({name: 'admin-providers'});
+        }, 3000);
+
+        } catch (error) {
+        console.log(error); 
+        }
+  }
 </script>
 
 <template>
