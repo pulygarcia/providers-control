@@ -3,6 +3,7 @@
     import MainHeader from '../components/MainHeader.vue';
     import {useAuthStore} from '../stores/authStore'
     import {Dialog, DialogPanel, DialogTitle, DialogDescription,} from '@headlessui/vue'
+    import Loader from '../components/Loader.vue';
 
     const authStore = useAuthStore();
 
@@ -51,10 +52,13 @@
         </Dialog>
 
         <h2 class="text-center text-2xl font-bold">Login</h2>
-        <p class="text-gray-600 text-center">Start session as Admin for can add, update or delete providers</p>
+        <p class="text-gray-600 text-center">Start session as <span class="text-red-500">Admin</span> for can add, update or delete providers.</p>
 
-        <div class="w-6/12 mt-11 mx-auto">
+        <div class="w-11/12 md:w-6/12 mt-11 mx-auto">
+            <Loader v-if="authStore.loading || authStore.successMessage"/>
+
             <FormKit
+                v-else
                 type="form"
                 @submit="submitHandler"
                 :value="formData"

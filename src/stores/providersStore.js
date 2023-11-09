@@ -6,8 +6,11 @@ import { collection, addDoc, doc, deleteDoc, updateDoc } from "firebase/firestor
 export const useProvidersStore = defineStore('providers', () => {
     const db = useFirestore();
     const successMessage = ref('');
+    const loading = ref(false);
 
     const addNewProvider = async (provider) => {
+        loading.value = true;
+
         try {
             await addDoc(collection(db, 'providers'), provider);
             successMessage.value = 'Provided was added correctly';
@@ -17,12 +20,16 @@ export const useProvidersStore = defineStore('providers', () => {
             }, 3000);
         } catch (error) {
             console.log(error);
+            
+        }finally{
+            loading.value = false
         }
     }
 
     const allProviders = useCollection(collection(db, 'providers'));
 
     const modifyProvider = async (providerRef, data) => {
+        loading.value = true;
         try {
             await updateDoc(providerRef, data);
 
@@ -33,6 +40,8 @@ export const useProvidersStore = defineStore('providers', () => {
 
         } catch (error) {
             console.log(error);
+        }finally{
+            loading.value = false;
         }
     }
 
@@ -51,6 +60,7 @@ export const useProvidersStore = defineStore('providers', () => {
         addNewProvider,
         allProviders,
         noResults,
+        loading,
         successMessage,
         modifyProvider,
         deleteProvider

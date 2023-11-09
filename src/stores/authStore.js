@@ -12,6 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
     const currentUser = ref(null);
     const userName = ref(null);
     const successMessage = ref('');
+    const loading = ref(false);
 
     const errors = {
         'auth/invalid-login-credentials' : 'Invalid login credentials',
@@ -29,6 +30,8 @@ export const useAuthStore = defineStore('auth', () => {
     })
     
     const login = (values) => {
+        loading.value = true;
+
         signInWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
             // Signed in 
@@ -41,9 +44,12 @@ export const useAuthStore = defineStore('auth', () => {
             }, 3000);
 
         })
-          .catch((error) => {
+        .catch((error) => {
             currentError.value = errors[error.code];
-        });
+        })
+        .finally(() => {
+            loading.value = false;
+        })
     }
 
     const logout = () => {
@@ -67,6 +73,7 @@ export const useAuthStore = defineStore('auth', () => {
         currentError,
         userName,
         logout,
+        loading,
         successMessage
     }
 })

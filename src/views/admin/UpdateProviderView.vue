@@ -5,6 +5,7 @@
     import { doc } from "firebase/firestore";
     import {useProvidersStore} from '../../stores/providersStore';
     import {Dialog, DialogPanel, DialogTitle, DialogDescription,} from '@headlessui/vue'
+    import Loader from '../../components/Loader.vue';
 
     const providersStore = useProvidersStore();
     const router = useRouter();
@@ -65,7 +66,10 @@
   </Dialog>
 
   <main class="mx-auto w-6/12 mt-11">
+    <Loader v-if="providersStore.loading || providersStore.successMessage"/>
+
     <FormKit
+      v-else
       type="form"
       :actions="false"
       @submit="handleSubmit"
@@ -136,5 +140,6 @@
         label="Add provider"
       />
     </FormKit>
+
   </main>
 </template>
