@@ -51,7 +51,7 @@
         </Dialog>
 
         <h2 class="text-center text-2xl font-bold">Login</h2>
-        <p class="text-gray-600 text-center">Start session as Admin</p>
+        <p class="text-gray-600 text-center">Start session as Admin for can add, update or delete providers</p>
 
         <div class="w-6/12 mt-11 mx-auto">
             <FormKit
