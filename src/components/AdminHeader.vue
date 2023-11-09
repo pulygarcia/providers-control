@@ -8,7 +8,7 @@
 
 <template>
   <header class="bg-gray-900 text-white py-6">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-0">
       <h2 class="font-bold text-xl">Admin panel</h2>
 
       <nav class="flex items-center gap-8">
@@ -29,7 +29,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
 
-          Add provider
+          Add <span class="hidden md:inline">provider</span>
         </RouterLink>
 
         <RouterLink 
@@ -50,12 +50,12 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
           </svg>
 
-          Close session
+          Close <span class="hidden md:inline">session</span>
         </button>
       </nav>
     </div>
 
-    <div v-if="authStore.currentUser" class="flex gap-2 items-center container mx-auto mt-2">
+    <div v-if="authStore.currentUser" class="flex justify-center md:justify-start gap-2 items-center container mx-auto mt-2">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
